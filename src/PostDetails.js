@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useParams, Redirect } from "react-router-dom"
-// import { LOREM_IPSUM } from "./config"
-import PostForm from "./PostForm"
-import Comments from './Comments'
+import { useHistory, useParams, Redirect } from "react-router-dom";
+import PostForm from "./PostForm";
+import Comments from './Comments';
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { 
-  getPostFromAPI, 
-  deleteCommentFromAPI, 
-  deletePostFromAPI
- } from "./actionCreators";
+import { getPostFromAPI, deleteCommentFromAPI, deletePostFromAPI} from "./actionCreators";
+import "./PostDetails.css";
+import changeVotes from "./changeVotes";
 
-import changeVotes from "./changeVotes"
-
-/**
- * Shows details of individual post. Get post id from params
- */
+/** PostDetails: Shows details of individual post. Get post id from params */
 function PostDetails() {
   const { id } = useParams();
 
@@ -53,18 +46,19 @@ function PostDetails() {
     } else {
       return (
         <div>
-          <div>
-            <h1>{post.title}</h1>
-            <button className="Post-edit-btn" onClick={() => setEditClicked(true)}>Edit</button>
-            <button className="Post-delete-btn" onClick={handleDeleteClick}>Delete</button>
-            <h3>{post.description}</h3>
+          <div className="PostDetails-post-div">
+            <button className="PostDetails-btn btn btn-dark" onClick={() => setEditClicked(true)}>Edit Post</button>
+            <button className="PostDetails-btn delete-btn btn btn-secondary" onClick={handleDeleteClick}>Delete Post</button>
+            <h1 className="PostDetails-title" >{post.title}</h1>
+            <h3><b>Description of post: </b><i>{post.description}</i></h3>
             <p>{post.body}</p>
             <div>
-              <p>Votes: {post.votes}</p>
-              <button onClick={() => changeVotes( id, "up", dispatch)}>Up Vote</button>
-              <button onClick={() => changeVotes( id, "down", dispatch)}>Down Vote</button>
+              <p ><b>Votes:</b> {post.votes}</p>
+              <button className="PostDetails-btn btn btn-success" onClick={() => changeVotes( id, "up", dispatch)}>Up Vote</button>
+              <button className="PostDetails-btn btn btn-danger" onClick={() => changeVotes( id, "down", dispatch)}>Down Vote</button>
             </div>
           </div>
+          <p><b>Comments:</b> </p>
           {post.comments ?
             <Comments comments={post.comments} postId={id} handleDelete={handleCommentDelete} />
             :
@@ -80,11 +74,11 @@ function PostDetails() {
   return (
     <div>
       {
-      error ? 
-      <Redirect to="/" /> 
-      :loading 
-        ? 
-        <p>Loading...</p> 
+      error ?
+      <Redirect to="/" />
+      :loading
+        ?
+        <p>Loading...</p>
         : showPostOrEdit()
       }
     </div>

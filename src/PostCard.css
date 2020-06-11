@@ -1,0 +1,24 @@
+.PostCard-body {
+  margin-left: 17rem;
+  margin-right: 17rem;
+  text-align: center;
+}
+
+@media only screen and (max-width: 2000px) {
+  .PostCard-body {
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+}
+
+.PostCard-header {
+  font-size: 2rem;
+}
+
+.PostCard-link {
+  color: rgb(180, 179, 179);
+}
+
+.PostCard-btn {
+  margin: 5px;
+}

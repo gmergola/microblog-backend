@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { createPostWithAPI, updatePostWithAPI } from "./actionCreators"
+import { createPostWithAPI, updatePostWithAPI } from "./actionCreators";
+import './PostForm.css';
 
 
-/**
- * Creates new post for blog.
- * 
- */
+/** PostForm: Creates new post for blog */
 const INITIAL_STATE = { title: "", description: "", body: "" };
 function PostForm({ id, postDetails = INITIAL_STATE, setEditClicked }) {
   const [formData, setFormData] = useState(postDetails);
@@ -22,8 +20,8 @@ function PostForm({ id, postDetails = INITIAL_STATE, setEditClicked }) {
     }));
   };
 
-  /**handleSubmit: if editing post set editClicked state to false 
-   * and update post in database redirect to post 
+  /**handleSubmit: if editing post set editClicked state to false
+   * and update post in database redirect to post
    * if adding add post to data base redirect to Blog
   */
   const handleSubmit = (evt) => {
@@ -42,7 +40,7 @@ function PostForm({ id, postDetails = INITIAL_STATE, setEditClicked }) {
     }
   }
 
-  /**handleCancel: if editing set editClicked state to false 
+  /**handleCancel: if editing set editClicked state to false
    * if adding redirect to Blog
    */
   function handleCancel() {
@@ -56,37 +54,59 @@ function PostForm({ id, postDetails = INITIAL_STATE, setEditClicked }) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Title</label>
-        <input type="text"
-          name="title"
-          value={formData.title}
-          placeholder=""
-          onChange={handleChange}
-        ></input><br />
+      <h1 className="PostForm-header">Write a post!</h1>
+      <div className="PostForm-form">
+        <form onSubmit={handleSubmit}>
+          <div className="form-group col-md-6">
+            <label htmlFor="title"><b>Title</b></label>
+            <input
+              className="form-control"
+              type="text"
+              name="title"
+              value={formData.title}
+              placeholder=""
+              onChange={handleChange}>
+            </input>
+          </div>
 
-        <label htmlFor="description">Description</label>
-        <input type="text"
-          name="description"
-          value={formData.description}
-          placeholder=""
-          onChange={handleChange}
-        ></input><br />
+          <div className="form-group col-md-6">
+            <label htmlFor="description"><b>Description</b></label>
+            <input
+              className="form-control"
+              type="text"
+              name="description"
+              value={formData.description}
+              placeholder=""
+              onChange={handleChange}>
+            </input>
+          </div>
 
-        <label htmlFor="body">Body</label>
-        <input type="text"
-          name="body"
-          value={formData.body}
-          placeholder=""
-          onChange={handleChange}
-        ></input><br />
-
-        <button className="PostForm-submit-btn">
-          Save
-        </button>
-
-      </form>
-      <button className="PostForm-cancel-btn" onClick={handleCancel} >Cancel</button>
+          <div className="form-group col-md-6">
+            <label htmlFor="body"><b>Body</b></label>
+            <input
+              className="form-control"
+              type="text"
+              name="body"
+              value={formData.body}
+              placeholder=""
+              onChange={handleChange}>
+            </input>
+          </div>
+            <div className="form-group col-md-6">
+              <button
+                className="PostForm-btn btn btn-dark">
+                <b>Save</b>
+              </button>
+            </div>
+        </form>
+        <div className="form-group col-md-6">
+          <button
+            className="PostForm-btn btn btn-light"
+            onClick={handleCancel} >
+            <b>Cancel</b>
+          </button>
+        </div>
+      </div>
     </div>
   )
 }

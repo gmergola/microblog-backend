@@ -6,7 +6,7 @@ import changeVotes from "./changeVotes"
 
 
 
-// Makes call to db to get brief version of posts and lists them 
+/*PostList: Makes call to db to get brief version of posts and lists them */
 function PostList(){
   const postIdsToPostData = useSelector(st => st.posts, shallowEqual);
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ function PostList(){
     changeVotes(postId, direction, dispatch);
   }
 
-  //Makes an array of the postIdsToPostData object, sorted by 
+  //Makes an array of the postIdsToPostData object, sorted by
   // votes in the postdata
   function sortPostsByVotes() {
     let posts = Object.entries(postIdsToPostData);
@@ -37,7 +37,7 @@ function PostList(){
   return(
     <div>
       {sortPostsByVotes().map(([postId, postData]) => (
-      <PostCard 
+      <PostCard
       key={postId}
       postId={postId}
       postData={postData}

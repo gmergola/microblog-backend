@@ -3,10 +3,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { createCommentWithAPI } from "./actionCreators";
+import './NewCommentForm.css';
 
-/*Allows creation of new comments.
-*/
-
+/* NewCommentForm: Allows creation of new comments */
 function NewCommentForm({ postId }) {
   const inital_comment_state = '';
   const [formData, setFormData] = useState(inital_comment_state);
@@ -18,23 +17,25 @@ function NewCommentForm({ postId }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    dispatch(createCommentWithAPI({text: formData }, postId))
+    dispatch(createCommentWithAPI({ text: formData }, postId))
     setFormData(inital_comment_state);
 
   }
 
   return (
-    <div>
+    <div className="NewCommentForm-div form-group">
       <form onSubmit={handleSubmit}>
         <label htmlFor="commentText">
-          <input type="text"
+          <input
+            className="form-control"
+            type="text"
             name="commentText"
             value={formData}
             placeholder="New Comment"
             onChange={handleChange}
           />
         </label>
-        <button>Add</button>
+          <button className="NewCommentForm-btn btn btn-info">Add</button>
       </form>
     </div>
   )

@@ -1,0 +1,10 @@
+.Comments-delete {
+ margin: 18px;
+ color: red;
+}
+
+.Comments-comment {
+  padding: 8px;
+  border: 1px solid lightgray;
+  border-radius: 12px;
+}

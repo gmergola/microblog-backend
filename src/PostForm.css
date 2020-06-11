@@ -1,0 +1,10 @@
+.PostForm-form {
+  margin: 4rem;
+}
+
+.PostForm-header {
+  margin-left: 1rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  border-bottom: 5px solid lightgray;
+}
