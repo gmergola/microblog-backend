@@ -1,17 +1,17 @@
-DROP DATABASE IF EXISTS "microblog";
+-- DROP DATABASE IF EXISTS "microblog";
 
-CREATE DATABASE "microblog";
+-- CREATE DATABASE "microblog";
 
-\c "microblog"
+-- \c "microblog"
 
-CREATE TABLE posts (id SERIAL PRIMARY KEY, 
-                    title TEXT NOT NULL, 
+CREATE TABLE posts (id SERIAL PRIMARY KEY,
+                    title TEXT NOT NULL,
                     description TEXT NOT NULL,
-                    body TEXT, 
+                    body TEXT,
                     votes INT NOT NULL DEFAULT 0);
-                    
-CREATE TABLE comments (id SERIAL PRIMARY KEY, 
-                       text TEXT NOT NULL, 
+
+CREATE TABLE comments (id SERIAL PRIMARY KEY,
+                       text TEXT NOT NULL,
                        post_id INT NOT NULL REFERENCES posts ON DELETE CASCADE);
 
 INSERT INTO posts (title, description, body) VALUES
